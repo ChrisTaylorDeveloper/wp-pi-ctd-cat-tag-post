@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 class Walker_Category_And_Post extends Walker_Category {
 
-	public function start_el( &$output, $category, $depth = 0, $args = array(), $current_object_id = 0 ) {
+    public function start_el( &$output, $category, $depth = 0, $args = array(), $current_object_id = 0 ) {
 
-		$link = '<strong><a href="' . get_term_link( $category ) . '">' . $category->name . '</a></strong>';
+        $link = '<strong><a href="' . get_term_link( $category ) . '">' . $category->name . '</a></strong>';
         $output .= "\t<li>$link\n";
 
         $output .= $this->category_post_list( $category->cat_ID );
