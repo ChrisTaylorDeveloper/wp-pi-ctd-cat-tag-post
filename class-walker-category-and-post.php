@@ -13,7 +13,7 @@ class Walker_Category_And_Post extends Walker_Category {
 
     private function category_post_list( int $category ): string
     {
-        $posts_in_category = get_posts( array( 'category' => $category ) );
+        $posts_in_category = get_posts( array( 'category' => $category, 'numberposts' => -1 ) );
 
         $html = '<ul>';
 
