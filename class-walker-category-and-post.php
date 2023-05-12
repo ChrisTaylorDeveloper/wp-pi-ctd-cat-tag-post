@@ -11,17 +11,33 @@ class Walker_Category_And_Post extends Walker_Category {
         $output .= $this->category_post_list( $category->cat_ID );
     }
 
-    private function category_post_list( int $category ): string
-    {
-        $posts_in_category = get_posts( array( 'category' => $category, 'numberposts' => -1 ) );
+    private function category_post_list( int $category_id ): string {
+        $args = array(
+            'post_type' => 'post',
+            'posts_per_page' => -1,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'category',
+                    'include_children' => false,
+                    'field' => 'id',
+                    'terms' => $category_id,
+                    'operator' => 'IN'
+                )
+            )
+        );
+
+        $query = new WP_Query( $args );
 
         $html = '<ul>';
 
-        foreach( $posts_in_category as $post ) {
-            $html .= '<li>';
-            $html .= '<a href="' . get_permalink( $post->ID ) . '">' . $post->post_title . '</a>' ;
-            $html .= '</li>';
+        if( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+                $query->the_post();
+                $html .= '<li><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></li>' ;
+            }
         }
+
+        wp_reset_postdata();
 
         $html .= '</ul>';
 
