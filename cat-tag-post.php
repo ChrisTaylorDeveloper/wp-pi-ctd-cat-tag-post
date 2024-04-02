@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 /**
- * Plugin Name: Cat Tag Post
- * Description: Display a hierarchical list of Categories, Sub Categories and Posts.
- * Author: Chris Taylor
- * Author URI: https://christaylordeveloper.co.uk
+ * Plugin Name:     CTD Cat Tag Post
+ * Description:     Display a hierarchical list of Categories, Sub Categories and Posts.
+ * Version:         1.0
+ * Author:          Chris Taylor
+ * Author URI:      https://christaylordeveloper.co.uk
  */
 
 require 'class-walker-category-and-post.php';
